@@ -21,6 +21,11 @@
   <!-- Custom styles for this template -->
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
+   <!-- DATE PICKER -->
+   <script type="module" src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/duet.esm.js"></script>
+   <script nomodule src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/duet.js"></script>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/themes/default.css" />
+
 </head>
 
 <body>
@@ -56,14 +61,14 @@
   </nav>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/about-bg.jpg')">
+  <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>About Me</h1>
-            <span class="subheading">This is what I do.</span>
+            <h1>Reserva aquí</h1>
+            <span class="subheading">Completa el siguiente formulario y te contactaremos a la brevedad para confirmar tu reserva</span>
           </div>
         </div>
       </div>
@@ -74,9 +79,43 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+        <p>¿Deseas contactarte con nosotros?, envíanos un mensaje y te responderemos a la brevedad</p>
+        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+        <div id="contact">
+          <h2>Contacto</h2>
+          <div id="contact-form">
+                  <form action="https://formspree.io/f/mzbkjjov" method="POST">
+                    <input type="hidden" name="_subject" value="SOLICITUD DE RESERVA" />
+                    <label><input type="name" name="Nombre" placeholder="Nombre" required></label>
+                    </br>
+                    <label><input type="email" name="_replyto" placeholder="Tu email" required></label>
+                    </br>
+                    <label><input type="tel" name="cel" placeholder="Número de contacto" required></label>
+                    </br>
+                    <label><textarea name="mensaje" placeholder="Ingresa tu mensaje aquí" required></textarea></label>
+                    </br>
+                    <label>Número de pasajeros</label>
+                    <select name="cantidad_personas">
+                      <option value="1">1</option>                      
+                      <option value="2">2</option>                      
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>                            
+                    </select>
+                  </br>
+                    <label name="fecha" for="date" required>Día de ingreso (check in)</label>
+                    <duet-date-picker identifier="date" required></duet-date-picker>
+                    </br>
+                    <label name="fecha2" for="date">Día de salida (check out)</label>
+                    <duet-date-picker identifier="date" required></duet-date-picker>
+                    </br>
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
+                  </form>
+          </div>
+      </div>
+
       </div>
     </div>
   </div>
@@ -124,8 +163,13 @@
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
+ 
 
 </body>
 
