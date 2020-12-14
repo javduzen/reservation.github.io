@@ -80,9 +80,13 @@
           <div id="contact-form">
                   <form action="https://formspree.io/f/mzbkjjov" method="POST">
                   <input type="hidden" name="_subject" value="Contact request from personal website" />
-                  <input type="email" name="_replyto" placeholder="Your email" required>
-                  <textarea name="message" placeholder="Type your message" required></textarea>
-                  <button type="submit">Send</button>
+                  <input type="email" name="_replyto" placeholder="Tu email" required>
+                  <div class="form-group"> <!-- Date input -->
+                    <label class="control-label" for="date">Fecha</label>
+                    <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
+                  </div>
+                  <textarea name="message" placeholder="Ingresa tu mensaje aquí" required></textarea>
+                  <button type="submit">Enviar</button>
               </form>
           </div>
       </div>
