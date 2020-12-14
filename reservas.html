@@ -84,7 +84,6 @@
         <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
         <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
         <div id="contact">
-          <h2>Contacto</h2>
           <div id="contact-form">
                   <form action="https://formspree.io/f/mzbkjjov" method="POST">
                     <input type="hidden" name="_subject" value="SOLICITUD DE RESERVA" />
@@ -106,11 +105,11 @@
                     </select>
                   </br>
                     <label name="fecha" for="date" required>Día de ingreso (check in)</label>
-                    <duet-date-picker identifier="date" required></duet-date-picker>
+                    <duet-date-picker id="datefield" identifier="date" min="2020-12-14" value="2020-12-14" required></duet-date-picker>
                     </br>
                     <label name="fecha2" for="date">Día de salida (check out)</label>
-                    <duet-date-picker identifier="date" required></duet-date-picker>
-                    </br>
+                    <duet-date-picker id="datefield" identifier="date" min="2020-12-14" value="2020-12-14" required></duet-date-picker>
+                    </br>          
                     <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
                   </form>
           </div>
@@ -169,7 +168,25 @@
 
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
- 
+
+  <!-- Script today-date -->
+  <script>
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+    if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("datefield").setAttribute("min", today);
+  </script>
+
+
 
 </body>
 
