@@ -24,7 +24,7 @@
    <!-- DATE PICKER -->
    
    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet"/>
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
 
 </head>
@@ -88,12 +88,12 @@
         <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
         <div id="contact">
           <div id="contact-form">
-                  <form action="https://formspree.io/f/mzbkjjov" method="POST">
+                  <form id="myForm" action="https://formspree.io/f/mzbkjjov" method="POST">
 
                     <input type="hidden" name="_subject" value="SOLICITUD DE RESERVA" />
-                    <label><input class="form-control" type="name" name="Nombre" placeholder="Nombre" required></label>
+                    <label><input class="form-control" type="name" name="nombre" placeholder="Nombre" required></label>
                     </br>
-                    <label><input class="form-control" type="email" name="_replyto" placeholder="Email" required></label>
+                    <label><input class="form-control" type="email" name="replyto" placeholder="Email" required></label>
                     </br>
                     <label><input class="form-control" type="tel" name="cel" placeholder="Número de contacto" required></label>
                     </br>
@@ -123,7 +123,7 @@
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton" onclick="SubForm()">Enviar</button>
 
               
                   </form>  
@@ -185,7 +185,7 @@
   <!-- Custom scripts for this template -->
   <script src="js/clean-blog.min.js"></script>
 
-  <!-- Script today-date -->
+  <!-- Script today-date and date-picker-->
 <script type="text/javascript">
 
  $(function () {
@@ -222,6 +222,24 @@ $('#salida').datepicker({
 
 });
 </script>
+
+<!-- Script API to excel spreadcheet -->
+
+<script>
+  function SubForm (){
+      $.ajax({
+          url:'https://api.apispreadsheets.com/data/5110/',
+          type:'post',
+          data:$("#myForm").serializeArray(),
+          success: function(){
+            alert("Form Data Submitted :)")
+          },
+          error: function(){
+            alert("There was an error :(")
+          }
+      });
+  }
+  </script>
 
 </body>
 
