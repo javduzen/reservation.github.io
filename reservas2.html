@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 
@@ -22,13 +22,16 @@
   <link href="css/clean-blog.min.css" rel="stylesheet">
 
    <!-- DATE PICKER -->
-  
+   
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css" rel="stylesheet"/>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+
 </head>
 
 <body>
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/duet.esm.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/duet.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@duetds/date-picker@1.1.0/dist/duet/themes/default.css" />
+
+ 
 
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
@@ -79,48 +82,55 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <p>¿Deseas contactarte con nosotros?, envíanos un mensaje y te responderemos a la brevedad</p>
+        <p>¿Deseas reservar?, déjanos tus datos y te responderemos a la brevedad</p>
         <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
         <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
         <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
         <div id="contact">
           <div id="contact-form">
                   <form action="https://formspree.io/f/mzbkjjov" method="POST">
+
                     <input type="hidden" name="_subject" value="SOLICITUD DE RESERVA" />
-                    <label><input type="name" name="Nombre" placeholder="Nombre" required></label>
+                    <label><input class="form-control" type="name" name="Nombre" placeholder="Nombre" required></label>
                     </br>
-                    <label><input type="email" name="_replyto" placeholder="Tu email" required></label>
+                    <label><input class="form-control" type="email" name="_replyto" placeholder="Email" required></label>
                     </br>
-                    <label><input type="tel" name="cel" placeholder="Número de contacto" required></label>
+                    <label><input class="form-control" type="tel" name="cel" placeholder="Número de contacto" required></label>
                     </br>
-                    <label><textarea name="mensaje" placeholder="Ingresa tu mensaje aquí" required></textarea></label>
+                    <label><textarea class="form-control" name="mensaje" placeholder="Ingresa tu mensaje aquí" ></textarea></label>
                     </br>
-                    <label>Número de pasajeros</label>
-                    <select name="cantidad_personas">
+                    <label >Número de pasajeros</label>
+                    <select class="form-control" name="cantidad_personas">
                       <option value="1">1</option>                      
                       <option value="2">2</option>                      
                       <option value="3">3</option>
                       <option value="4">4</option>
                       <option value="5">5</option>                            
                     </select>
-                  </br>                  
-              
-                  <label name="checkin" for="date1">Día de entrada (check in)</label>
-                  <input id="datefield" type='date' name="dateOne" value="" onchange="getInputValue();"></input>              
-                  </br>                  
-                  <label name="checkout" for="date2">Día de salida (check out)</label>
-                  <input id="datefield2" type='date'></input>                  
                   </br>
-                  <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
-                  </form>
-                  
-                  <input type="text" name="entrada" id="entrada" value=""> 
-                  <input type="text" name="salida" id="salida" value="" >
+                  <div class="row">
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <span class="form-label">Check In</span>
+                        <span class="glyphicon glyphicon-calendar"></span>
+                        <input type="text" name="entrada" id="entrada" value="" placeholder="dd-mm-aaaa"> 
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <span class="form-label">Check out</span>
+                        <input type="text" name="salida" id="salida" value="" placeholder="dd-mm-aaaa">
+                      </div>
+                    </div>
 
-                    
+                    <button type="submit" class="btn btn-primary" id="sendMessageButton">Enviar</button>
 
+              
+                  </form>  
           </div>
-      </div>
+        </div>
+
+
 
       </div>
     </div>
@@ -166,7 +176,6 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Contact Form JavaScript -->
@@ -188,7 +197,7 @@
  $('#entrada').datepicker({
     format: "dd/mm/yyyy",
     language: 'es',
-    startDate: '+2d',
+    startDate: '+1d',
     endDate: '+100d',
     autoclose: true,
 });
@@ -214,41 +223,6 @@ $('#salida').datepicker({
 });
 </script>
 
-  <script>
-    var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1; //January is 0!
-    var yyyy = today.getFullYear();
-    var checkin;
-    if(dd<10){
-            dd='0'+dd
-        } 
-        if(mm<10){
-            mm='0'+mm
-        } 
-
-    today = yyyy+'-'+mm+'-'+dd;    
-    document.getElementById("datefield").setAttribute("min", today);  
-     
-
-    function getInputValue(){
-                        // Selecting the input element and get its value 
-                        var inputVal = document.getElementById("datefield").value;
-                        // Displaying the value       
-                        var fecha = new Date(inputVal);  
-                        var dia = fecha.getDate()+1;
-                        var mes = fecha.getMonth()+1;
-                        var ano = fecha.getFullYear();
-                        checkin = ano+'-'+mes+'-'+dia;
-                        if (checkin="NaN-NaN-NaN") {
-                          document.getElementById("datefield2").setAttribute("min", today);                          
-                        } else {
-                          document.getElementById("datefield2").setAttribute("min", checkin);
-                        }                                                     
-                    }
-    
-    
-  </script>
 </body>
 
 </html>
