@@ -122,7 +122,7 @@
                         <input type="text" name="salida" id="salida" value="" placeholder="dd-mm-aaaa">
                       </div>
                     </div>
-
+                    <input type="hidden" id="identificador" name="id" > 
                     <button type="submit" class="btn btn-primary" id="sendMessageButton" onclick="SubForm()">Enviar</button>
 
               
@@ -186,7 +186,7 @@
   <script src="js/clean-blog.min.js"></script>
 
   <!-- Script today-date and date-picker-->
-<script type="text/javascript">
+  <script type="text/javascript">
 
  $(function () {
 
@@ -198,7 +198,7 @@
     format: "dd/mm/yyyy",
     language: 'es',
     startDate: '+1d',
-    endDate: '+100d',
+    endDate: '+360d',
     autoclose: true,
 });
 var a = $('#entrada').datepicker("getDate");
@@ -206,7 +206,7 @@ $('#salida').datepicker({
     startDate: '+2d',
     format: "dd/mm/yyyy",
     language: "es",
-    endDate: '+100d',
+    endDate: '+360d',
     autoclose: true
 });
 
@@ -242,5 +242,11 @@ $('#salida').datepicker({
   </script>
 
 </body>
+
+<script type="text/javascript">
+  var d = Date.now();
+  // Set the value of the "date" field
+  document.getElementById("identificador").value = d;
+</script>
 
 </html>
